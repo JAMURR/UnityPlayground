@@ -1,44 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("Playground/Attributes/Collectable")]
-public class CollectableAttribute : MonoBehaviour
+namespace UnityPlayground
 {
-	public int pointsWorth = 1;
-	
-	private UIScript userInterface;
+    [AddComponentMenu("Playground/Attributes/Collectable")]
+    public class CollectableAttribute : MonoBehaviour
+    {
+        public int pointsWorth = 1;
 
-	private void Start()
-	{
-		// Find the UI in the scene and store a reference for later use
-		userInterface = GameObject.FindObjectOfType<UIScript>();
-	}
+        private UIScript userInterface;
 
-
-	//This will create a dialog window asking for which dialog to add
-	private void Reset()
-	{
-		Utils.Collider2DDialogWindow(this.gameObject, true);
-	}
+        private void Start()
+        {
+            // Find the UI in the scene and store a reference for later use
+            userInterface = GameObject.FindObjectOfType<UIScript>();
+        }
 
 
-	// This function gets called everytime this object collides with another
-	private void OnTriggerEnter2D(Collider2D otherCollider)
-	{
-		string playerTag = otherCollider.gameObject.tag;
+        //This will create a dialog window asking for which dialog to add
+        private void Reset()
+        {
+            Utils.Collider2DDialogWindow(this.gameObject, true);
+        }
 
-		// is the other object a player?
-		if(playerTag == "Player" || playerTag == "Player2")
-		{
-			if(userInterface != null)
-			{
-				// add one point
-				int playerId = (playerTag == "Player") ? 0 : 1;
-				userInterface.AddPoints(playerId, pointsWorth);
-			}
 
-			// then destroy this object
-			Destroy(gameObject);
-		}
-	}
+        // This function gets called everytime this object collides with another
+        private void OnTriggerEnter2D(Collider2D otherCollider)
+        {
+            string playerTag = otherCollider.gameObject.tag;
+
+            // is the other object a player?
+            if (playerTag == "Player" || playerTag == "Player2") {
+                if (userInterface != null) {
+                    // add one point
+                    int playerId = (playerTag == "Player") ? 0 : 1;
+                    userInterface.AddPoints(playerId, pointsWorth);
+                }
+
+                // then destroy this object
+                Destroy(gameObject);
+            }
+        }
+    }
 }

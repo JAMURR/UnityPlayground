@@ -2,17 +2,20 @@
 using System.Collections;
 using UnityEditor;
 
-[CanEditMultipleObjects]
-[CustomEditor(typeof(HealthSystemAttribute))]
-public class PlayerHealthInspector : InspectorBase
+namespace UnityPlayground
 {
-	private string explanation = "This scripts allows the Players or other objects to receive damage.";
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(HealthSystemAttribute))]
+    public class PlayerHealthInspector : InspectorBase
+    {
+        private string explanation = "This scripts allows the Players or other objects to receive damage.";
 
-	public override void OnInspectorGUI()
-	{
-		GUILayout.Space(10);
-		EditorGUILayout.HelpBox(explanation, MessageType.Info);
+        public override void OnInspectorGUI()
+        {
+            GUILayout.Space(10);
+            EditorGUILayout.HelpBox(explanation, MessageType.Info);
 
-		base.OnInspectorGUI();
-	}
+            base.OnInspectorGUI();
+        }
+    }
 }

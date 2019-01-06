@@ -2,19 +2,22 @@
 using System.Collections;
 using UnityEditor;
 
-[CanEditMultipleObjects]
-[CustomEditor(typeof(CollectableAttribute))]
-public class CollectableAttrInspector : InspectorBase
+namespace UnityPlayground
 {
-	private string explanation = "When the Player touches this object, it will be awarded one or more points.";
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(CollectableAttribute))]
+    public class CollectableAttrInspector : InspectorBase
+    {
+        private string explanation = "When the Player touches this object, it will be awarded one or more points.";
 
-	public override void OnInspectorGUI()
-	{
-		GUILayout.Space(10);
-		EditorGUILayout.HelpBox(explanation, MessageType.Info);
+        public override void OnInspectorGUI()
+        {
+            GUILayout.Space(10);
+            EditorGUILayout.HelpBox(explanation, MessageType.Info);
 
-		base.OnInspectorGUI();
+            base.OnInspectorGUI();
 
-		CheckIfTrigger(true);
-	}
+            CheckIfTrigger(true);
+        }
+    }
 }
